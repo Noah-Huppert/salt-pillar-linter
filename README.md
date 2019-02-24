@@ -6,7 +6,7 @@ Lints Salt states and their use of pillars. Only Jinja supported.
 - [Setup](#setup)
 
 # Overview
-Lints Salt states to ensure they are using Pillar value which exist.  
+Lints Salt states to ensure they are using Pillar keys which exist.  
 
 This project exists because at times it can be challenging to debug Jinja 
 render errors.
