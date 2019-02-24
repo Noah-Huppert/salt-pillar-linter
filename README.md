@@ -30,7 +30,7 @@ salt/foo/init.sls uses pillar keys which do not exist
         foo.bar.config_file
 ```
 
-See `salt-pillar-linter -h` for more details usage information.
+See `salt-pillar-linter.py -h` for more details usage information.
 
 # Setup
 [Pipenv](https://pipenv.readthedocs.io/en/latest/) is used to manage a virtual 
