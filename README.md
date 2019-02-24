@@ -20,6 +20,16 @@ Usage:
 salt-pillar-linter.py -p PILLARS_ROOT -s STATES_ROOT
 ```
 
+Sample output:
+
+```
+% salt-pillar-linter.py -p pillar -s salt
+salt/foo/init.sls uses pillar keys which do not exist
+    Line 151:
+
+        foo.bar.config_file
+```
+
 See `salt-pillar-linter -h` for more details usage information.
 
 # Setup
