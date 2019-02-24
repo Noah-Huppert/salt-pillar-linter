@@ -8,8 +8,8 @@ Lints Salt states and their use of pillars. Only Jinja supported.
 # Overview
 Lints Salt states to ensure they are using Pillar value which exist.  
 
-This project exists because the Salt tool does not provide the best output 
-when you use a Pillar in a state which does not exist.  
+This project exists because at times it can be challenging to debug Jinja 
+render errors.
 
 Only works with fairly standard Salt state setups which use Jinja and plain 
 text pillars in SLS files.
