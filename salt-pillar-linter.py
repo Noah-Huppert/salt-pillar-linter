@@ -81,6 +81,11 @@ pillar_keys = {}
 loader = jinja2.FileSystemLoader(searchpath=os.getcwd())
 env = jinja2.Environment(loader=loader)
 
+if args.debug:
+    print("###################")
+    print("# PARSING PILLARS #")
+    print("###################")
+
 for pillar_file in pillar_files:
     template = env.get_template(pillar_file)
     template_str = template.render()
@@ -104,25 +109,49 @@ if args.debug:
     print()
 
 # {{{1 Lint states
-jinja_pattern = re.compile(r"{{\s*pillar\.([a-zA-Z\._]*)\s*}}")
+if args.debug:
+    print("##################")
+    print("# LINTING STATES #")
+    print("##################")
+
+jinja_pattern = re.compile(r"{{\s*pillar\.([0-9a-zA-Z\._]*)\s*}}")
 
 for state_file in state_files:
     with open(state_file, 'r') as f:
         line_num = 1
         not_keys = {}
 
-        for line in f:
+        if args.debug:
+            print("{} keys used by state:".format(state_file))
+            print()
 
+        # For each line in a state
+        for line in f:
+            # For each Jinja pillar usage in state
             for match in re.finditer(jinja_pattern, line):
+                # Get groups from match
                 for pillar_str in match.groups():
+                    if args.debug:
+                        print("    {}".format(pillar_str))
+
+                    # Check if pillar key used exists
                     if pillar_str not in pillar_keys:
+                        # Create entry in not_keys dict for line if this is the 
+                        # first item on this line
                         if line_num not in not_keys:
                             not_keys[line_num] = []
 
+                        # Add pillar key to dict so we can tell user about
+                        # improper usage later
                         not_keys[line_num].append(pillar_str)
 
+            # Increment line number so we can keep track of where errors are
             line_num += 1
 
+        if args.debug:
+            print()
+
+        # If any errors
         if not_keys:
             common_prefix = os.path.commonprefix([os.getcwd(), state_file])
             pretty_file_name = os.path.relpath(state_file, common_prefix)
