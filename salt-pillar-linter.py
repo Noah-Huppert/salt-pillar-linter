@@ -62,7 +62,9 @@ def gather_sls_files(initial_dirs):
 pillar_files = gather_sls_files(args.pillar_roots)
 
 state_files = gather_sls_files(args.state_roots)
-state_files.update(args.template_files)
+
+if args.template_files:
+    state_files.update(args.template_files)
 
 # {{{1 Get all pillar keys
 def flatten_dict(d, parent_key=''):
