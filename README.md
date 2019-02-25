@@ -31,7 +31,7 @@ salt/foo/init.sls uses pillar keys which do not exist
 
 See `salt-pillar-linter -h` for more details usage information.
 
-# Setup
+# Install
 1. Clone down the repository
 2. Install dependencies
 	-[Pipenv](https://pipenv.readthedocs.io/en/latest/) is used to manage 
