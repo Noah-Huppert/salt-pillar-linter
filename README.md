@@ -34,7 +34,7 @@ See `salt-pillar-linter -h` for more details usage information.
 # Install
 1. Clone down the repository
 2. Install dependencies
-	-[Pipenv](https://pipenv.readthedocs.io/en/latest/) is used to manage 
+	- [Pipenv](https://pipenv.readthedocs.io/en/latest/) is used to manage 
 	a virtual environment used by Salt Pillar Linter.
 	- Install dependencies by running `pipenv install`
 3. Add repository directory to `PATH`
