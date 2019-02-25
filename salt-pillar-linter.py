@@ -25,6 +25,11 @@ parser.add_argument('-s',
                     dest='state_roots',
                     help="Directories where states are located, can be " +
                         "specified multiple times")
+parser.add_argument('-d',
+                    action='store_true',
+                    default=False,
+                    dest='debug',
+                    help="Print additional debug information")
 args = parser.parse_args()
 
 # {{{1 Locate all state and pillar files
@@ -57,15 +62,17 @@ def flatten_dict(d, parent_key=''):
     keys = []
 
     for k in d:
+        combined_key = k
+
+        if parent_key:
+            combined_key = "{}.{}".format(parent_key, k)
+
         if type(d[k]) == dict:
-            call_parent_key = k
 
-            if parent_key:
-                call_parent_key = "{}.{}".format(parent_key, k)
 
-            keys.extend(flatten_dict(d[k], parent_key=call_parent_key))
+            keys.extend(flatten_dict(d[k], parent_key=combined_key))
         else:
-            keys.append("{}.{}".format(parent_key, k))
+            keys.append(combined_key)
 
     return keys
 
@@ -80,8 +87,21 @@ for pillar_file in pillar_files:
 
     value = yaml.load(template_str)
 
-    for k in flatten_dict(value):
+    flat_keys = flatten_dict(value)
+
+    if args.debug:
+        print()
+        print ("{} keys:".format(pillar_file))
+        print()
+
+        for k in flat_keys:
+            print("    {}".format(k))
+
+    for k in flat_keys:
         pillar_keys[k] = True
+
+if args.debug:
+    print()
 
 # {{{1 Lint states
 jinja_pattern = re.compile(r"{{\s*pillar\.([a-zA-Z\._]*)\s*}}")
