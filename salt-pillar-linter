@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#?
+# salt-pillar-linter - Runs salt-pillar-linter.py in a virtual environment
+#
+# USAGE
+#
+#	salt-pillar-linter OPTIONS
+# 
+# BEHAVIOR
+#
+#	Runs the salt-pillar-linter.py file in a Pipenv managed 
+#	virtual environment.
+#
+#?
+
+# {{{1 Exit on any error
+set -e
+
+# {{{1 Configuration
+prog_dir=$(realpath $(dirname "$0"))
+wrk_dir="$PWD"
+
+# {{{1 Run
+# Open pipenv in salt-pillar-linter directory, then cd into pwd directory
+cd "$prog_dir" && pipenv shell "cd $wrk_dir && echo && echo && $prog_dir/salt-pillar-linter.py $@; exit $?"
