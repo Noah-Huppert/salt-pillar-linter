@@ -33,20 +33,22 @@ parser.add_argument('-d',
 args = parser.parse_args()
 
 # {{{1 Locate all state and pillar files
-def gather_sls_files(dirs):
+def gather_sls_files(initial_dirs):
     """ Walks directories to find locations of all sls files
     """
+    dirs = set()
+    dirs.update(initial_dirs)
 
-    sls_files = []
+    sls_files = set()
 
     while dirs:
         root = dirs.pop()
 
         for top_dir, sub_dirs, files in os.walk(root):
-            sls_files.extend([os.path.join(top_dir, f) for f in files
+            sls_files.update([os.path.join(top_dir, f) for f in files
                                 if f != 'top.sls' and
                                    os.path.splitext(f)[1] == '.sls'])
-            dirs.extend([os.path.join(top_dir, sub_dir)
+            dirs.update([os.path.join(top_dir, sub_dir)
                                            for sub_dir in sub_dirs])
 
     return sls_files
