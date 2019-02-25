@@ -25,6 +25,12 @@ parser.add_argument('-s',
                     dest='state_roots',
                     help="Directories where states are located, can be " +
                         "specified multiple times")
+parser.add_argument('-f',
+                    action='append',
+                    metavar='TMPL_FILE',
+                    dest='template_files',
+                    help="Non state files which uses Jinja templating to " +
+                        "check, can be specified multiple times")
 parser.add_argument('-d',
                     action='store_true',
                     default=False,
@@ -54,7 +60,9 @@ def gather_sls_files(initial_dirs):
     return sls_files
 
 pillar_files = gather_sls_files(args.pillar_roots)
+
 state_files = gather_sls_files(args.state_roots)
+state_files.update(args.template_files)
 
 # {{{1 Get all pillar keys
 def flatten_dict(d, parent_key=''):
