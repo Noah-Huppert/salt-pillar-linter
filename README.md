@@ -3,7 +3,7 @@ Lints Salt states and their use of pillars. Only Jinja supported.
 
 # Table Of Contents
 - [Overview](#overview)
-- [Setup](#setup)
+- [Install](#install)
 
 # Overview
 Lints Salt states to ensure they are using Pillar keys which exist.  
@@ -23,26 +23,18 @@ salt-pillar-linter.py -p PILLARS_ROOT -s STATES_ROOT
 Sample output:
 
 ```
-% salt-pillar-linter.py -p pillar -s salt
+% salt-pillar-linter -p pillar -s salt
 salt/foo/init.sls uses pillar keys which do not exist
     Line 151:
-
         foo.bar.config_file
 ```
 
-See `salt-pillar-linter.py -h` for more details usage information.
+See `salt-pillar-linter -h` for more details usage information.
 
 # Setup
-[Pipenv](https://pipenv.readthedocs.io/en/latest/) is used to manage a virtual 
-environment used by Salt Pillar Linter.
-
-Setup:
-
-1. Install dependencies:
-   ```
-   pipenv install
-   ```
-2. Run:
-   ```
-   pipenv run salt-pillar-linter.py OPTIONS...
-   ```
+1. Clone down the repository
+2. Install dependencies
+	-[Pipenv](https://pipenv.readthedocs.io/en/latest/) is used to manage 
+	a virtual environment used by Salt Pillar Linter.
+	- Install dependencies by running `pipenv install`
+3. Add repository directory to `PATH`
