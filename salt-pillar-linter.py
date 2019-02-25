@@ -71,7 +71,7 @@ def flatten_dict(d, parent_key=''):
 
 pillar_keys = {}
 
-loader = jinja2.FileSystemLoader(searchpath='/')
+loader = jinja2.FileSystemLoader(searchpath=os.getcwd())
 env = jinja2.Environment(loader=loader)
 
 for pillar_file in pillar_files:
@@ -111,7 +111,8 @@ for state_file in state_files:
 
             for line_num in not_keys:
                 print("    Line {}:".format(line_num))
-                print()
 
                 for k in not_keys[line_num]:
                     print ("        {}".format(k))
+
+                print()
