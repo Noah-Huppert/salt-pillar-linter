@@ -17,7 +17,20 @@ text pillars in SLS files.
 Usage:
 
 ```
-salt-pillar-linter.py -p PILLARS_ROOT -s STATES_ROOT
+usage: salt-pillar-linter [-h] -p PILLARS_ROOT -s STATES_ROOT
+                             [-f TMPL_FILE] [-d]
+
+Lints Salt states to ensurepillars are used correctly
+
+optional arguments:
+  -h, --help       show this help message and exit
+  -p PILLARS_ROOT  Directories where pillars are present, can be specified
+                   multiple times
+  -s STATES_ROOT   Directories where states are located, can be specified
+                   multiple times
+  -f TMPL_FILE     Non state files which uses Jinja templating to check, can
+                   be specified multiple times
+  -d               Print additional debug information
 ```
 
 Sample output:
