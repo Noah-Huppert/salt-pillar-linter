@@ -11,6 +11,7 @@ import jinja2
 # {{{1 Parse arguments
 parser = argparse.ArgumentParser(description="Lints Salt states to ensure " +
                                  "pillars are used correctly")
+parser.prog = 'salt-pillar-linter'
 parser.add_argument('-p',
                     action='append',
                     metavar='PILLARS_ROOT',
