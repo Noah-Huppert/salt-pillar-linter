@@ -42,8 +42,6 @@ salt/foo/init.sls uses pillar keys which do not exist
         foo.bar.config_file
 ```
 
-See `salt-pillar-linter -h` for more details usage information.
-
 # Install
 1. Clone down the repository
 2. Install dependencies
