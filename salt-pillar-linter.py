@@ -9,7 +9,7 @@ import yaml
 import jinja2
 
 # {{{1 Parse arguments
-parser = argparse.ArgumentParser(description="Lints Salt states to ensure" +
+parser = argparse.ArgumentParser(description="Lints Salt states to ensure " +
                                  "pillars are used correctly")
 parser.add_argument('-p',
                     action='append',

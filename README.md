@@ -20,7 +20,7 @@ Usage:
 usage: salt-pillar-linter [-h] -p PILLARS_ROOT -s STATES_ROOT
                              [-f TMPL_FILE] [-d]
 
-Lints Salt states to ensurepillars are used correctly
+Lints Salt states to ensure pillars are used correctly
 
 optional arguments:
   -h, --help       show this help message and exit
