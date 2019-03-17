@@ -51,3 +51,4 @@ See `salt-pillar-linter -h` for more details usage information.
 	a virtual environment used by Salt Pillar Linter.
 	- Install dependencies by running `pipenv install`
 3. Add repository directory to `PATH`
+4. Invoke `salt-pillar-linter`
