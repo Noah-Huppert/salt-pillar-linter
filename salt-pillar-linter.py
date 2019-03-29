@@ -101,7 +101,12 @@ if args.debug:
 
 for pillar_file in pillar_files:
     template = env.get_template(pillar_file)
-    template_str = template.render()
+    template_str = None
+
+    try:
+        template_str = template.render()
+    except Exception as e:
+        raise ValueError("Failed to render Jinja template: {}".format(e))
 
     value = yaml.load(template_str)
 
